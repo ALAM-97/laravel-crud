@@ -21,7 +21,15 @@
                     <td>{{$product['type']}}</td>
                     <td>{{$product['cooking_time']}} min</td>
                     <td>{{$product['weight']}} gr</td>
-                    <td><a href="{{route('products.show', $product['id'])}}"><button type="button" class="btn btn-primary">Visualizza</button></a></td>
+                    <td>
+                        <a href="{{route('products.show', $product['id'])}}"><button type="button" class="btn btn-primary">Visualizza</button></a>
+                        <a href="{{route('products.edit', $product['id'])}}"><button type="button" class="btn btn-secondary">Modifica</button></a>
+                        <form action="{{route('products.destroy', $product['id'])}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Elimina</button>
+                        </form>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
